@@ -19,7 +19,7 @@ jobs:
       - image: circleci/ruby:3.1.0
     steps:
       - checkout
-      -setup_remote_docker
+      - setup_remote_docker 
       - run:
           name: docker-login
           command: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
@@ -29,6 +29,7 @@ jobs:
       - run:
           name: run-docker-image
           command: docker run -p 3000:3000 -d $IMAGE_NAME
+
 
   deploy:
     docker:
