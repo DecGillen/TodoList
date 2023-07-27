@@ -23,6 +23,9 @@ jobs:
       - run:
           name: docker-login
           command: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+        run:
+          name: build-docker-image
+          command: docker built -t $IMAGE_NAME:latest . --build-arg- SECRET_KEY_BASE=$SECRET_KEY_BASE
       - run:
           name: publish-docker-image
           command: docker push decgillen/todolist:$IMAGE_NAME
