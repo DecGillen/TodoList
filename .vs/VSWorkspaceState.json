@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\.circleci",
+    "\\app",
+    "\\app\\assets",
+    "\\app\\assets\\config",
+    "\\config\\initializers"
+  ],
+  "SelectedNode": "\\app\\assets\\config\\secrets.yml",
+  "PreviewInSolutionExplorer": false
+}

@@ -9,30 +9,31 @@ workflows:
           requires:
             - build
 
+orbs:
+  ruby:circleci/ruby@1.4.0
+
 jobs:
   build:
     working_directory: ~/todolist-lab-8
     docker:
-      - image: circleci/node:10.16.3
+      - image: circleci/ruby: 3.1.0
     steps:
       - checkout
+      -setup_remote_docker
       - run:
-          name: update-npm
-          command: 'sudo npm install -g npm@5'
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package-lock.json" }}
+          name: docker-login
+          command: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
       - run:
-          name: install-npm-wee
-          command: npm install
-      - save_cache:
-          key: dependency-cache-{{ checksum "package-lock.json" }}
-          paths:
-            - ./node_modules
+          name: publish-docker-image
+          command: docker push $IMAGE_NAME
+      - run:
+          name: run-docker-image
+          command: docker run -p 3000:3000 -d $IMAGE_NAME
 
   deploy:
     docker:
-      - image: circleci/node:10.16.3
+      - image: circleci/ruby:3.1.0
     steps:
       - run:
           name: deploy-application
-          command: ssh -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_PUBLIC_DNS "npm remove SimpleApplication/node_modules;npm remove SimpleApplication/package-lock.json; export SERVER=/$SERVER; export PRIVATE_KEY=/$PRIVATE_KEY; sudo rm -rf SimpleApplication/;git clone https://github.com/DecGillen/SimpleApplication.git; source SimpleApplication/deploy.sh"
+          command: ssh -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_PUBLIC_DNS export CONTAINER_NAME=/"$CONTAINER_NAME";export IMAGE_NAME=/"$IMAGE_NAME"; sudo rm -rf Todolist/;git clone https://github.com/DecGillen/TodoList; source Todolist/deploy.sh"
