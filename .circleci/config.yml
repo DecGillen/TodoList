@@ -10,7 +10,7 @@ workflows:
             - build
 
 orbs:
-  ruby:circleci/ruby@1.4.0
+  ruby: circleci/ruby@1.4.0
 
 jobs:
   build:
