@@ -16,7 +16,7 @@ jobs:
   build:
     working_directory: ~/todolist-lab-8
     docker:
-      - image: circleci/ruby:3.1.0
+      - image: cimg/ruby:3.1-browsers
     steps:
       - checkout
       - setup_remote_docker 
@@ -33,7 +33,7 @@ jobs:
 
   deploy:
     docker:
-      - image: cimg/ruby:3.1.0
+      - image: cimg/ruby:3.1-browsers
     steps:
       - run:
           name: deploy-application
