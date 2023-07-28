@@ -41,4 +41,4 @@ jobs:
     steps:
       - run:
           name: deploy-application
-          command: ssh -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_PUBLIC_DNS "export CONTAINER_NAME="$CONTAINER_NAME"; export IMAGE_NAME="$IMAGE_NAME"; sudo rm -rf Todolist/; git clone https://github.com/DecGillen/TodoList; source Todolist/deploy.sh"
+          command: ssh -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_PUBLIC_DNS "export CONTAINER_NAME=\"$CONTAINER_NAME\"; export IMAGE_NAME=\"$IMAGE_NAME\"; sudo rm -rf Todolist/; git clone https://github.com/DecGillen/TodoList; source Todolist/deploy.sh"

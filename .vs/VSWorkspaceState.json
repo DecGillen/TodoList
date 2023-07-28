@@ -1,12 +1,12 @@
 {
   "ExpandedNodes": [
     "",
-    "\\.circleci",
-    "\\app",
-    "\\app\\assets",
     "\\app\\assets\\config",
-    "\\config\\initializers"
+    "\\app\\assets\\images",
+    "\\app\\assets\\stylesheets",
+    "\\config\\initializers",
+    "\\config\\locales"
   ],
-  "SelectedNode": "\\app\\assets\\config\\secrets.yml",
+  "SelectedNode": "\\dockerignore",
   "PreviewInSolutionExplorer": false
 }
